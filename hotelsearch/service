@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /opt/hotelSearch/html_v.3.0
+node app.js

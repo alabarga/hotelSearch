@@ -1,5 +1,6 @@
 $( document ).ready(function() {
-  $.getJSON( "http://private-de5055-greenscore.apiary-mock.com/hotels", function( data ) {
+//  $.getJSON( "http://private-de5055-greenscore.apiary-mock.com/hotels", function( data ) {
+  $.getJSON( "http://129.158.75.245:3000/hotels", function( data ) {
     $.each( data, function( key, val ) {
       var hotel = "<div class=\"col-md-4 col-sm-6 wow zoomIn\" data-wow-delay=\"0."+key+"s\">" +
         "  <div class=\"tour_container\">";

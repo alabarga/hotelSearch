@@ -1,0 +1,32 @@
+@include("preamble")
+FROM ${BASE_IMAGE}:${PARENT_IMAGE_TAG}
+@include("maintainer")
+
+@include("addon-toggles")
+
+ENV DOBACKUP="true" \
+    GOPATH="${SERVICE_USER_HOME}"
+
+@include("service_user")
+@include("nodejs")
+@include("npm")
+@include("git")
+@include("apache")
+
+RUN cd /opt && \
+    git clone https://github.com/hackatrips2018-team13/hotelSearch.git work && \
+    rm -rf hotelSearch && \
+    rm -rf /var/www/html && \
+    mv /opt/work/html_v.3.0 /var/www/html && \
+    rm -rf work && \
+    mkdir /etc/service/apache
+
+COPY apache-files/service /etc/service/apache/run
+
+RUN chmod +x /etc/service/apache/run
+
+EXPOSE 80
+
+@include("copy-metadata")
+@include("symlinks")
+@include("instructions")
